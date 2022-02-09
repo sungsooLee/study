@@ -5,7 +5,7 @@ $(function(){
 });
 function scrollCheck(){
     var lastScrollTop = 0;
-    $('.container').scroll(function(event){
+    $('.container').on('scroll' , function(event){
         var st = $(this).scrollTop();
         if (st > lastScrollTop){
             console.log('down')
