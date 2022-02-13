@@ -6,23 +6,25 @@
         <meta name="format-detection" content="telephone=no">
         <title>PopupGuide</title>
         <link rel="stylesheet" href="css/guide.css">
-        <script src="js/jquery-3.6.0.min.js"></script>
-        <script src="js/common_ui.js"></script>
+        <script src="jquery-3.6.0.min.js"></script>
+        <script src="js/ui.js"></script>
     </head>
     <body>
         <div class="guide-wrap">
-            <button type="button">바텀시트</button>
-            <div class=""></div>
-        </div>
-        <div class="container">
-            <a class="btn js-click-modal">Open Modal</a>
-            <div class="modal">
-              <div class="header">This is a full-width modal with a title
-              </div>
-              <div class="body"><p>And here is all its contents.</p>
-                <a class="btn js-close-modal">Close</a>
-              </div>
+            <button type="button" class="pop">바텀시트</button>
+            <div class="bottom-sheet-wrap">
+                <div class="bottom-shee-cont"></div>
             </div>
-          </div>
+        </div>
+        <script>
+            $('.pop').on('click' , function(){
+                $('.bottom-sheet-wrap').fadeIn(1).addClass('active');
+            });
+            $('.bottom-sheet-wrap').click(function(e) { 
+                if(!$(e.target).hasClass("bottom-shee-cont") )  {
+                    $('.bottom-sheet-wrap').fadeOut(400).removeClass('active');
+                } 
+            });
+        </script>
     </body>
 </html>
