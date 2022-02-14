@@ -15,8 +15,26 @@
             <div class="bottom-sheet-wrap">
                 <div class="bottom-shee-cont"></div>
             </div>
+            <a href="javascript:;" id="test" class="aaa bbb" onclick="contain()">테스트</a>
         </div>
         <script>
+            function contain(){
+                const _this = event.target;
+                const has = _this.classList.contains('ccc');
+                has ? _this.classList.add('add') : _this.classList.remove('aaa');
+            }
+            // document.querySelector('.target').addEventListener("click", contain, false);
+           
+            // function contain(){
+            //     const cName = document.getElementById('test').classList;
+            //     console.log(cName)
+            //     // cName.contains('bbb');
+            //     // if( !event.target.classList == 'active' ){
+            //     //     event.target.classList.add('active')
+            //     // }else{
+            //     //     event.target.classList.remove('active');
+            //     // }
+            // }
             $('.pop').on('click' , function(){
                 $('.bottom-sheet-wrap').fadeIn(1).addClass('active');
             });
