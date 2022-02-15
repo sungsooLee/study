@@ -6,8 +6,8 @@
         <meta name="format-detection" content="telephone=no">
         <title>PopupGuide</title>
         <link rel="stylesheet" href="css/guide.css">
-        <script src="jquery-3.6.0.min.js"></script>
-        <script src="js/ui.js"></script>
+        <script src="../js/jquery-3.6.0.min.js"></script>
+        <script src="../js/ui.js"></script>
     </head>
     <body>
         <div class="guide-wrap">
@@ -15,8 +15,28 @@
             <div class="bottom-sheet-wrap">
                 <div class="bottom-shee-cont"></div>
             </div>
+            <a href="javascript:;" id="test" class="aaa bbb" data-test="1111" onclick="contain()">테스트</a>
         </div>
         <script>
+            function contain(){
+                const _this = event.target;
+                const data = event.target.dataset.test;
+                const has = _this.classList.contains('ccc');
+                has ? _this.classList.add('add') : _this.classList.remove('aaa');
+                console.log(data);
+            }
+            // document.querySelector('.target').addEventListener("click", contain, false);
+           
+            // function contain(){
+            //     const cName = document.getElementById('test').classList;
+            //     console.log(cName)
+            //     // cName.contains('bbb');
+            //     // if( !event.target.classList == 'active' ){
+            //     //     event.target.classList.add('active')
+            //     // }else{
+            //     //     event.target.classList.remove('active');
+            //     // }
+            // }
             $('.pop').on('click' , function(){
                 $('.bottom-sheet-wrap').fadeIn(1).addClass('active');
             });
