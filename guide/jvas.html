@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover">
+        <meta name="format-detection" content="telephone=no">
+        <title>PopupGuide</title>
+        <link rel="stylesheet" href="css/guide.css">
+        <style>
+            .tab-contents {display: none;}
+        </style>
+    </head>
+    <body>
+        <button type="button" class="test">클릭</button>
+        <br>
+        <!-- tab-list -->
+        <!-- <ul class="tab-list" role="tablist">
+            <li><a href="" class="tab-menu active" role="tab" aria-selected="true"  data-tab-target="#tab1">텝메뉴1</a></li>
+            <li><a href="" class="tab-menu" role="tab" aria-selected="false" tabindex="-1"  data-tab-target="#tab2">텝메뉴2</a></li>
+            <li><a href="" class="tab-menu" role="tab" aria-selected="false" tabindex="-1"  data-tab-target="#tab3">텝메뉴3</a></li>
+        </ul>
+        <div class="tab-contents-wrap">
+            <div id="tab1" role="tabpanel" class="tab-contents" tabindex="0" data-tab-content>텝내용1</div>
+            <div id="tab2" role="tabpanel" class="tab-contents" tabindex="0" data-tab-content>텝내용2</div>
+            <div id="tab3" role="tabpanel" class="tab-contents" tabindex="0" data-tab-content>텝내용3</div>
+        </div> -->
+        <div class="tabs">
+            <div class="tab" data-tab-target="#tab1">
+              <p>tab1</p>
+            </div>
+            <div class="tab" data-tab-target="#tab2">
+              <p>tab2</p>
+            </div>
+            <div class="tab" data-tab-target="#tab3">
+              <p>tab3</p>
+            </div>
+        </div>
+        <div class="content">
+            <div id="tab1" data-tab-content class="items active">
+              <h2>Tab1</h2>
+              <p>탭 1에 들어갈 내용~</p>
+            </div>
+            <div id="tab2" data-tab-content class="items">
+              <h2>Tab2</h2>
+              <p>탭 2에 들어갈 내용~</p>
+            </div>
+            <div id="tab3" data-tab-content class="items">
+              <h2>Tab3</h2>
+              <p>탭 3에 들어갈 내용~</p>
+            </div>
+          </div>
+        <!-- // tab-list -->
+        <script>
+            function timer(time){
+              return new Promise(function(resolve){
+                setTimeout(function(){
+                  resolve(time);
+                }, time)
+              });
+            }
+            // timer(1000).then(function(time){
+            //   console.log('time' +time);
+            //   timer(time+1000).then(function(time){
+            //   console.log('time' +time);
+            //   timer(time+1000);
+            // });
+            // }).then();
+            console.log('start');
+            var time = await timer(1000);
+
+            var job1 = new Promise(function(resolve , reject){
+              resolve();
+            });
+            job1.then(function(data){
+              console.log('data', data);
+            })
+
+            // tab
+            const tabs = document.querySelectorAll("[data-tab-target]");
+            const tabcon = document.querySelectorAll("[data-tab-content]");
+            tabs.forEach((tab) => {
+            tab.addEventListener("click", () => {
+                const target = document.querySelector(tab.dataset.tabTarget);
+                tabcon.forEach((tabc_all) => {
+                tabc_all.classList.remove("active");
+                });
+
+                target.classList.add("active");
+            });
+            });
+
+        
+            function onClickEvent(){
+                console.log('클릭');
+            }
+
+            document.querySelector('.test').addEventListener("click", onClickEvent);
+        </script>
+    </body>
+</html>
