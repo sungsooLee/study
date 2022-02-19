@@ -7,94 +7,60 @@
         <title>PopupGuide</title>
         <link rel="stylesheet" href="css/guide.css">
         <style>
-            .tab-contents {display: none;}
+            .tab-list {display: flex;justify-content: space-between;flex-wrap: wrap;}
+            .tab-list li {display: flex;align-items: center;justify-content: center; flex: auto;height:40px;}
+            .tab-list li a {color:#000;font-size: 14px;}
+            .tab-list li a.active {color:#f00;}
+            .tab-contents > div {display: none;}
+            .tab-contents > div.active {display: block;}
         </style>
     </head>
     <body>
-        <button type="button" class="test">클릭</button>
-        <br>
-        <!-- tab-list -->
-        <!-- <ul class="tab-list" role="tablist">
-            <li><a href="" class="tab-menu active" role="tab" aria-selected="true"  data-tab-target="#tab1">텝메뉴1</a></li>
-            <li><a href="" class="tab-menu" role="tab" aria-selected="false" tabindex="-1"  data-tab-target="#tab2">텝메뉴2</a></li>
-            <li><a href="" class="tab-menu" role="tab" aria-selected="false" tabindex="-1"  data-tab-target="#tab3">텝메뉴3</a></li>
+        <ul id="tabList" class="tab-list">
+          <li><a href="javascript:;" class="active" data-contents="tabCont01" onclick="tabLink(tabList,tabContents)">메뉴1</a></li>
+          <li><a href="javascript:;" data-contents="tabCont02" onclick="tabLink(tabList,tabContents)">메뉴2</a></li>
+          <li><a href="javascript:;" data-contents="tabCont03" onclick="tabLink(tabList,tabContents)">메뉴3</a></li>
         </ul>
-        <div class="tab-contents-wrap">
-            <div id="tab1" role="tabpanel" class="tab-contents" tabindex="0" data-tab-content>텝내용1</div>
-            <div id="tab2" role="tabpanel" class="tab-contents" tabindex="0" data-tab-content>텝내용2</div>
-            <div id="tab3" role="tabpanel" class="tab-contents" tabindex="0" data-tab-content>텝내용3</div>
-        </div> -->
-        <div class="tabs">
-            <div class="tab" data-tab-target="#tab1">
-              <p>tab1</p>
-            </div>
-            <div class="tab" data-tab-target="#tab2">
-              <p>tab2</p>
-            </div>
-            <div class="tab" data-tab-target="#tab3">
-              <p>tab3</p>
-            </div>
-        </div>
-        <div class="content">
-            <div id="tab1" data-tab-content class="items active">
-              <h2>Tab1</h2>
-              <p>탭 1에 들어갈 내용~</p>
-            </div>
-            <div id="tab2" data-tab-content class="items">
-              <h2>Tab2</h2>
-              <p>탭 2에 들어갈 내용~</p>
-            </div>
-            <div id="tab3" data-tab-content class="items">
-              <h2>Tab3</h2>
-              <p>탭 3에 들어갈 내용~</p>
-            </div>
+        <div id="tabContents" class="tab-contents">
+          <div id="tabCont01" class="active tab-cont">
+            <h2>Tab1</h2>
+            <p>탭 1에 들어갈 내용~</p>
           </div>
+          <div id="tabCont02" class="tab-cont">
+            <h2>Tab2</h2>
+            <p>탭 2에 들어갈 내용~</p>
+          </div>
+          <div id="tabCont03" class="tab-cont">
+            <h2>Tab3</h2>
+            <p>탭 3에 들어갈 내용~</p>
+          </div>
+        </div>
         <!-- // tab-list -->
         <script>
-            function timer(time){
-              return new Promise(function(resolve){
-                setTimeout(function(){
-                  resolve(time);
-                }, time)
-              });
+          function tabLink(tabMenu,tabContentWrap){
+            var tabLink = tabMenu.querySelectorAll('a');
+            var tabCont = tabContents.querySelectorAll('.tab-cont');
+            for(var i=0; i < tabLink.length; i++ ){
+              tabLink[i].addEventListener('click' , function(e){
+                var dataValue = e.target.dataset.contents;
+                for(var j=0; j < tabCont.length; j++  ){
+                  tabCont[j].classList.remove('active');
+                }
+                  document.getElementById(dataValue).classList.add('active');
+              })
             }
-            // timer(1000).then(function(time){
-            //   console.log('time' +time);
-            //   timer(time+1000).then(function(time){
-            //   console.log('time' +time);
-            //   timer(time+1000);
-            // });
-            // }).then();
-            console.log('start');
-            var time = await timer(1000);
-
-            var job1 = new Promise(function(resolve , reject){
-              resolve();
-            });
-            job1.then(function(data){
-              console.log('data', data);
-            })
-
-            // tab
-            const tabs = document.querySelectorAll("[data-tab-target]");
-            const tabcon = document.querySelectorAll("[data-tab-content]");
-            tabs.forEach((tab) => {
-            tab.addEventListener("click", () => {
-                const target = document.querySelector(tab.dataset.tabTarget);
-                tabcon.forEach((tabc_all) => {
-                tabc_all.classList.remove("active");
-                });
-
-                target.classList.add("active");
-            });
-            });
-
-        
-            function onClickEvent(){
-                console.log('클릭');
-            }
-
-            document.querySelector('.test').addEventListener("click", onClickEvent);
+          }
+          // var tabLink = document.querySelectorAll('.tab-list a');
+          // var tabCont = document.querySelectorAll('.tab-contents > div');
+          //   for(var i=0; i < tabLink.length; i++ ){
+          //     tabLink[i].addEventListener('click' , function(e){
+          //       var dataValue = e.target.dataset.contents;
+          //       for(var j=0; j < tabCont.length; j++  ){
+          //         tabCont[j].classList.remove('active');
+          //       }
+          //       document.getElementById(dataValue).classList.add('active');
+          //   })
+          // }
         </script>
     </body>
 </html>
