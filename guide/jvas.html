@@ -17,9 +17,9 @@
     </head>
     <body>
         <ul id="tabList" class="tab-list">
-          <li><a href="javascript:;" class="active" data-contents="tabCont01" onclick="tabLink(tabList,tabContents)">메뉴1</a></li>
-          <li><a href="javascript:;" data-contents="tabCont02" onclick="tabLink(tabList,tabContents)">메뉴2</a></li>
-          <li><a href="javascript:;" data-contents="tabCont03" onclick="tabLink(tabList,tabContents)">메뉴3</a></li>
+          <li><a href="javascript:;" class="active" data-contents="tabCont01">메뉴1</a></li>
+          <li><a href="javascript:;" data-contents="tabCont02">메뉴2</a></li>
+          <li><a href="javascript:;" data-contents="tabCont03">메뉴3</a></li>
         </ul>
         <div id="tabContents" class="tab-contents">
           <div id="tabCont01" class="active tab-cont">
@@ -37,30 +37,30 @@
         </div>
         <!-- // tab-list -->
         <script>
-          function tabLink(tabMenu,tabContentWrap){
-            var tabLink = tabMenu.querySelectorAll('a');
-            var tabCont = tabContents.querySelectorAll('.tab-cont');
-            for(var i=0; i < tabLink.length; i++ ){
-              tabLink[i].addEventListener('click' , function(e){
-                var dataValue = e.target.dataset.contents;
-                for(var j=0; j < tabCont.length; j++  ){
-                  tabCont[j].classList.remove('active');
-                }
-                  document.getElementById(dataValue).classList.add('active');
-              })
-            }
-          }
-          // var tabLink = document.querySelectorAll('.tab-list a');
-          // var tabCont = document.querySelectorAll('.tab-contents > div');
+          // function tabLink(){
+          //   var tabLink = tabList.querySelectorAll('a');
+          //   var tabCont = tabContents.querySelectorAll('.tab-cont');
           //   for(var i=0; i < tabLink.length; i++ ){
           //     tabLink[i].addEventListener('click' , function(e){
           //       var dataValue = e.target.dataset.contents;
           //       for(var j=0; j < tabCont.length; j++  ){
           //         tabCont[j].classList.remove('active');
           //       }
-          //       document.getElementById(dataValue).classList.add('active');
-          //   })
+          //         document.getElementById(dataValue).classList.add('active');
+          //     })
+          //   }
           // }
+          var tabLink = document.querySelectorAll('.tab-list a');
+          var tabCont = document.querySelectorAll('.tab-contents > div');
+            for(var i=0; i < tabLink.length; i++ ){
+              tabLink[i].addEventListener('click' , function(e){
+                var dataValue = e.target.dataset.contents;
+                for(var j=0; j < tabCont.length; j++ ){
+                  tabCont[j].classList.remove('active');
+                }
+                document.getElementById(dataValue).classList.add('active');
+            })
+          }
         </script>
     </body>
 </html>
