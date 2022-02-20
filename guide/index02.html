@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ko">
+<!--
+	Standardchartered
+	Procedure Sheet
+-->
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover">
+	<meta name="format-detection" content="telephone=no">
+	<title>신한 New App 퍼블리싱 가이드</title>
+
+<!-- style -->
+<style type="text/css">
+	* {margin: 0; padding: 0;}
+	body {padding: 20px; font-family: dotum, Sans-Serif; color: #333; font-size: 11px; background-color: #fff;}
+	/* title */
+	.delete td{text-decoration:line-through;}
+	h1 {color: #000; letter-spacing: -1px; font-family:Tahoma;}
+	.currentsite {display: block; position: absolute; right: 40px; top: 20px;}
+	.sou {cursor: pointer;}
+	.sou:hover {color: red;}
+	#mwork fieldset {border: none;}
+	#mwork legend {display: none;}
+	#mwork table {width: 100%; border-collapse: collapse; border: 1px solid #666;}
+	#mwork caption {text-align: left;font-size: 80%; color: #999;}
+	#mwork .index td {background: #ccc;}
+	#mwork .indexred td {background: #fdd;}
+	#mwork .indexgreen td {background: #dfd;}
+	#mwork .indexblue td {background: #ddf;}
+	#mwork .indexyellow td {background: #fff1c7;}
+	#mwork .line td {border-top: 3px solid #666;}
+	#mwork .line2 td {border-top: 2px solid #666;}
+	#mwork th {padding: 6px; border: 1px solid #666;color: #ccc; font-size: 110%; background-color: #000;}
+	#mwork td {padding: 3px; padding-left: 10px; border: 1px solid #666; background-color: #eee;}
+	#mwork td.type {padding-left: 0; text-align:center;}
+	#mwork .filename{text-align:left;}
+	#mwork .filename span {display: inline-block; color: red; margin-left: 10px; font-weight: bold;}
+	#mwork .filename span.new_no {display: none;}
+	#mwork .link a,#mwork .link a:link,#mwork .link a:visited{color:green; font-weight:bold;}
+	#mwork .directory span {display: inline-block;color: red; margin-left: 10px; font-weight: bold;}
+	#mwork .depth1 {font-weight:bold;}
+	#mwork .memo {color: #000;}
+	/* task */
+	#mwork .done {padding: 0; font-weight: bold; text-align: center; color: #090;}
+	#mwork .undone {padding: 0; font-weight: bold; text-align: center; color: #900;}
+	#mwork .total {padding: 0; font-weight: bold; text-align: center; color: #000;}
+	/* effect */
+	#mwork a,#mwork a:link,#mwork a:visited {color: #666; text-decoration: none;}
+	#mwork a:hover,#mwork a:active {color: #00f; text-decoration: underline;}
+	#mwork td:hover {background-color: #ddd;}
+	/* memo */
+	#mwork del {color: #900;}
+	#mwork .add {color: #900;}
+	/* note */
+	#note {font-size:13px; margin: 10px 0 10px 0; padding: 10px; border: 2px dotted #000; background: #eee; letter-spacing: 0;}
+	#note p {padding-left: 10px;}
+	#note pre {margin-top: 10px; margin-bottom: 10px; font-family: Tahoma, Sans-Serif; color: #333; font-size: small;}
+	#note h2 {margin: 0px 0 10px 0;}
+	#note .comment {display: block; margin: 5px 0 10px 0; color: #666;}
+	#note .issue {color: #900;}
+	#note .add {color: #900; font-weight: bold;}
+	#note ul li {margin-left: 20px;}
+	td em {color: #f00; font-style: normal;}
+	td strong {color: red; font-weight: normal;}
+	tr.orange td {background-color: #FFE4CA !important;}
+	tr.green td {background-color: #DEEED5 !important;}
+	tr.purple td {background-color: #F1E6FF !important;}
+	tr.yellow td {background-color: #FCFBDC !important;}
+	tr.red td {background-color: #FFE6E7 !important;}
+	tr.grey td {background-color: #cfcfcf !important;}
+	tr.blue td {background-color: #E1F5FD !important;}
+	tr.white td {background-color: #FFF !important;}
+	tr.brown td {background-color: #E6DCD2 !important;}
+	.redfont {color: #f00;}
+	.modify {margin-top: 5px; padding: 5px; border: 1px dotted #000; font-size: 13px; background-color: #ccc;}
+	.modify h2 {margin-bottom: 3px;}
+	ol li{margin-left:10px;}
+	#mwork a.link_delete{text-decoration:line-through; color:red;}
+</style>
+<!-- //style -->
+<!-- script -->
+<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript">
+	$(window)
+			.load(
+					function() {
+						// Work Progress
+						var arrTitle = new Array("task");
+						var intDone, intUnDone, intTotal
+						for ( var i = 0; i < arrTitle.length; i++) {
+							intDone = intUnDone = intTotal = 0;
+							$("#tableSheet tr td." + arrTitle[i]).each(
+									function() {
+										if ($(this).hasClass("done")) {
+											intDone++;
+										}
+										if ($(this).hasClass("undone")) {
+											intUnDone++;
+										}
+										intTotal++;
+									});
+							$("#tableTotal td").eq(i).find(".done").text(
+									intDone);
+							$("#tableTotal td").eq(i).find(".undone").text(
+									intUnDone);
+							$("#tableTotal td").eq(i).find(".total").text(
+									intTotal);
+						}
+						;
+						$("#tableSheet td.memo").each(
+								function(intIndex, strValue) {
+									$(this).html(
+											intIndex + 1 + ". " + $(this).html());
+								});
+						// TotalCount
+						$("#spanTotalCount").html(
+								$("#tableSheet tr td.task").length);
+					});
+</script>
+<!-- //script -->
+<!-- html body -->
+</head>
+<body>
+	<!-- sheet -->
+	<!-- note -->
+	<h1>신한 New App Publishing List</h1>
+	<div id="note">
+		<ul>
+			<li><strong><a href="index.html" target="_blank">공통 가이드 바로가기</a></strong></li>
+		</ul>
+	</div>
+	<div id="mwork">
+	  <fieldset>
+			<legend>Update Date : </legend>
+			<table id="tableTotal" class="mwork" border="1">
+				<caption>Work Progress</caption>
+				<colgroup>
+					<col width="10%" />
+					<col width="*" />
+				</colgroup>
+				<tbody>
+					<tr>
+						<th>Task</th>
+						<td><span class="done"></span>/<span class="undone"></span> &nbsp;&nbsp;&nbsp;&nbsp;  총 페이지 수 : <span class="total"></span></td>
+					</tr>
+				</tbody>
+		  </table>
+			<br />
+			<br />
+			<div style="font-weight:bold; font-size:16px;">
+				<a href="#menuTab1">대메뉴1</a> /
+				<a href="#menuTab2">대메뉴2</a> / 
+				<a href="#menuTab3">대메뉴3</a> / 
+				<a href="#menuTab4">대메뉴4</a> / 
+				<a href="#menuTab5">대메뉴5</a> / 
+				<a href="#menuTab6">대메뉴6</a>
+			</div>
+			<br />
+		  <table id="tableSheet" class="mwork" border="1">
+			  <caption>페이지 리스트</caption>
+			  <colgroup>
+				  <col width="9%" />
+				  <col width="9%" />
+				  <col width="9%" />
+				  <col width="9%" />
+				  <col width="7%" />
+				  <col width="7%" />
+				  <col width="20%" />
+				  <col width="5%" />
+				  <col width="5%" />
+				  <col width="*" />
+			  </colgroup>
+			  <thead>
+				  <tr>
+					  <th>1Depth</th>
+					  <th>2Depth</th>
+					  <th>3Depth</th>
+					  <th>4Depth</th>
+					  <th>5Depth</th>
+					  <th>6Depth</th>
+					  <th>화면ID</th>
+					  <th><abbr title="Publishing">작업자</abbr></th>
+					  <th><abbr title="Date">Date</abbr></th>
+					  <th>비고</th>
+				  </tr>
+			  </thead>
+			  <tbody>
+				  <!-- menuTab1 -->
+				  <tr id="menuTab1" class="line">
+				    <td class="depth1"></td>
+				    <td class="depth2"></td>
+				    <td class="depth3"></td>
+				    <td class="depth4"></td>
+				    <td class="depth5"></td>
+				    <td class="depth6"></td>
+					<td class="filename"><a target="_blank" href=".html"></a></td>
+					<td class="task done">이성수</td>
+					<td class="dev undone">22.01.02</td>
+					<td></td>
+				  </tr>
+				  <!-- // menuTab1 -->
+				  <!-- menuTab2 -->
+				  <tr id="menuTab2" class="line orange">
+				    <td class="depth1"></td>
+				    <td class="depth2"></td>
+				    <td class="depth3"></td>
+				    <td class="depth4"></td>
+				    <td class="depth5"></td>
+				    <td class="depth6"></td>
+					<td class="filename"><a target="_blank" href=".html"></a></td>
+					<td class="task done"></td>
+					<td class="dev undone"></td>
+					<td></td>
+				  </tr>
+				  <!-- // menuTab2 -->
+				  <!-- menuTab3 -->
+				  <tr id="menuTab2" class="line green">
+				    <td class="depth1"></td>
+				    <td class="depth2"></td>
+				    <td class="depth3"></td>
+				    <td class="depth4"></td>
+				    <td class="depth5"></td>
+				    <td class="depth6"></td>
+					<td class="filename"><a target="_blank" href=".html"></a></td>
+					<td class="task done"></td>
+					<td class="dev undone"></td>
+					<td></td>
+				  </tr>
+				  <!-- // menuTab3 -->
+			  </tbody>
+		  </table>
+	  </fieldset>
+		<div class="modify">
+			<h2>2022.03.03</h2>
+			<p>
+				총 페이지수 : <span id="spanTotalCount">0</span>
+			</p>
+		</div>
+	</div>
+	<!-- //sheet -->
+	<!-- //html body -->
+	<script type="text/javascript">
+		$(".delete").attr("title","메뉴 삭제됨");
+	</script>
+</body>
+</html>
