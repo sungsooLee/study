@@ -1,9 +1,5 @@
 <!DOCTYPE html>
 <html lang="ko">
-<!--
-	Standardchartered
-	Procedure Sheet
--->
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover">
 	<meta name="format-detection" content="telephone=no">
@@ -81,41 +77,31 @@
 <!-- script -->
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
-	$(window)
-			.load(
-					function() {
-						// Work Progress
-						var arrTitle = new Array("task");
-						var intDone, intUnDone, intTotal
-						for ( var i = 0; i < arrTitle.length; i++) {
-							intDone = intUnDone = intTotal = 0;
-							$("#tableSheet tr td." + arrTitle[i]).each(
-									function() {
-										if ($(this).hasClass("done")) {
-											intDone++;
-										}
-										if ($(this).hasClass("undone")) {
-											intUnDone++;
-										}
-										intTotal++;
-									});
-							$("#tableTotal td").eq(i).find(".done").text(
-									intDone);
-							$("#tableTotal td").eq(i).find(".undone").text(
-									intUnDone);
-							$("#tableTotal td").eq(i).find(".total").text(
-									intTotal);
-						}
-						;
-						$("#tableSheet td.memo").each(
-								function(intIndex, strValue) {
-									$(this).html(
-											intIndex + 1 + ". " + $(this).html());
-								});
-						// TotalCount
-						$("#spanTotalCount").html(
-								$("#tableSheet tr td.task").length);
-					});
+	$(window).load(function() {
+		// Work Progress
+		var arrTitle = new Array("task");
+		var intDone, intUnDone, intTotal
+		for ( var i = 0; i < arrTitle.length; i++) {
+			intDone = intUnDone = intTotal = 0;
+			$("#tableSheet tr td." + arrTitle[i]).each(function() {
+				if ($(this).hasClass("done")) {
+					intDone++;
+				}
+				if ($(this).hasClass("undone")) {
+					intUnDone++;
+				}
+				intTotal++;
+			});
+			$("#tableTotal td").eq(i).find(".done").text(intDone);
+			$("#tableTotal td").eq(i).find(".undone").text(intUnDone);
+			$("#tableTotal td").eq(i).find(".total").text(intTotal);
+		}
+		$("#tableSheet td.memo").each(function(intIndex, strValue) {
+			$(this).html(intIndex + 1 + ". " + $(this).html());
+		});
+		// TotalCount
+		$("#spanTotalCount").html($("#tableSheet tr td.task").length);
+	});
 </script>
 <!-- //script -->
 <!-- html body -->
@@ -187,42 +173,42 @@
 			  <tbody>
 				  <!-- menuTab1 -->
 				  <tr id="menuTab1" class="line">
-				    <td class="depth1"></td>
-				    <td class="depth2"></td>
-				    <td class="depth3"></td>
-				    <td class="depth4"></td>
-				    <td class="depth5"></td>
-				    <td class="depth6"></td>
+				    <td class="depth1">메인</td>
+				    <td class="depth2">&nbsp;</td>
+				    <td class="depth3">&nbsp;</td>
+				    <td class="depth4">&nbsp;</td>
+				    <td class="depth5">&nbsp;</td>
+				    <td class="depth6">&nbsp;</td>
 					<td class="filename"><a target="_blank" href=".html"></a></td>
-					<td class="task done">이성수</td>
+					<td class="task"></td><!-- 완료시 done 클래스 추가 -->
 					<td class="dev undone">22.01.02</td>
 					<td></td>
 				  </tr>
 				  <!-- // menuTab1 -->
 				  <!-- menuTab2 -->
 				  <tr id="menuTab2" class="line orange">
-				    <td class="depth1"></td>
-				    <td class="depth2"></td>
-				    <td class="depth3"></td>
-				    <td class="depth4"></td>
-				    <td class="depth5"></td>
-				    <td class="depth6"></td>
+				    <td class="depth1">&nbsp;</td>
+				    <td class="depth2">&nbsp;</td>
+				    <td class="depth3">&nbsp;</td>
+				    <td class="depth4">&nbsp;</td>
+				    <td class="depth5">&nbsp;</td>
+				    <td class="depth6">&nbsp;</td>
 					<td class="filename"><a target="_blank" href=".html"></a></td>
-					<td class="task done"></td>
+					<td class="task"></td><!-- 완료시 done 클래스 추가 -->
 					<td class="dev undone"></td>
 					<td></td>
 				  </tr>
 				  <!-- // menuTab2 -->
 				  <!-- menuTab3 -->
 				  <tr id="menuTab2" class="line green">
-				    <td class="depth1"></td>
-				    <td class="depth2"></td>
-				    <td class="depth3"></td>
-				    <td class="depth4"></td>
-				    <td class="depth5"></td>
-				    <td class="depth6"></td>
+				    <td class="depth1">&nbsp;</td>
+				    <td class="depth2">&nbsp;</td>
+				    <td class="depth3">&nbsp;</td>
+				    <td class="depth4">&nbsp;</td>
+				    <td class="depth5">&nbsp;</td>
+				    <td class="depth6">&nbsp;</td>
 					<td class="filename"><a target="_blank" href=".html"></a></td>
-					<td class="task done"></td>
+					<td class="task"></td><!-- 완료시 done 클래스 추가 -->
 					<td class="dev undone"></td>
 					<td></td>
 				  </tr>
