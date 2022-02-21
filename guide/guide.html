@@ -113,6 +113,7 @@
                 menu[i].addEventListener('click', openCurrAccordion);
             }
 
+            // 메뉴 리스트 활성화
             function activeClass(e){
                 var parent = this.parentElement;
                 for(var i = 0; i < menu.length; i++) {
@@ -125,31 +126,31 @@
             //Use this as the callback if you would like multiple dropdowns to be open
             function openAccordion(e) {
                 var parent = this.parentElement;
-                var article = this.nextElementSibling;
+                var detailCont = this.nextElementSibling;
                 
                 if (!parent.classList.contains('active')) {
                     parent.classList.add('active');
-                    article.style.maxHeight = article.scrollHeight + 'px';
+                    detailCont.style.maxHeight = detailCont.scrollHeight + 'px';
                 }
                 else {
                     parent.classList.remove('active');
-                    article.style.maxHeight = '0px';
+                    detailCont.style.maxHeight = '0px';
                 }
             }
 
-            //Use this as the callback if you would like no more than one dropdown to be open
+            // 아코디언
             function openCurrAccordion(e) {
                 for(var i = 0; i < menu.length; i++) {
                     var parent = menu[i].parentElement;
-                    var article = menu[i].nextElementSibling;
+                    var detailCont = menu[i].nextElementSibling;
 
                     if (this === menu[i] && !parent.classList.contains('active')) {
                         parent.classList.add('active');
-                        article.style.maxHeight = article.scrollHeight + 'px';
+                        detailCont.style.maxHeight = detailCont.scrollHeight + 'px';
                     }
                     else {
                         parent.classList.remove('active');
-                        article.style.maxHeight = '0px';
+                        detailCont.style.maxHeight = '0px';
                     }
                 }
             }
