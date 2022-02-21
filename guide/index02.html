@@ -75,9 +75,9 @@
 </style>
 <!-- //style -->
 <!-- script -->
-<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+<script src="../js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
-	$(window).load(function() {
+	$(window).on('load' ,function() {
 		// Work Progress
 		var arrTitle = new Array("task");
 		var intDone, intUnDone, intTotal
@@ -118,7 +118,7 @@
 	<div id="mwork">
 	  <fieldset>
 			<legend>Update Date : </legend>
-			<table id="tableTotal" class="mwork" border="1">
+			<table id="tableTotal" class="mwork">
 				<caption>Work Progress</caption>
 				<colgroup>
 					<col width="10%" />
@@ -142,19 +142,19 @@
 				<a href="#menuTab6">대메뉴6</a>
 			</div>
 			<br />
-		  <table id="tableSheet" class="mwork" border="1">
+		  <table id="tableSheet" class="mwork">
 			  <caption>페이지 리스트</caption>
 			  <colgroup>
-				  <col width="9%" />
-				  <col width="9%" />
-				  <col width="9%" />
-				  <col width="9%" />
-				  <col width="7%" />
-				  <col width="7%" />
-				  <col width="20%" />
-				  <col width="5%" />
-				  <col width="5%" />
-				  <col width="*" />
+				  <col style="width:9%">
+				  <col style="width:9%">
+				  <col style="width:9%">
+				  <col style="width:9%">
+				  <col style="width:7%">
+				  <col style="width:7%">
+				  <col style="width:20%">
+				  <col style="width:7%">
+				  <col style="width:7%">
+				  <col>
 			  </colgroup>
 			  <thead>
 				  <tr>
@@ -216,12 +216,12 @@
 			  </tbody>
 		  </table>
 	  </fieldset>
-		<div class="modify">
+		<!-- <div class="modify">
 			<h2>2022.03.03</h2>
 			<p>
 				총 페이지수 : <span id="spanTotalCount">0</span>
 			</p>
-		</div>
+		</div> -->
 	</div>
 	<!-- //sheet -->
 	<!-- //html body -->
