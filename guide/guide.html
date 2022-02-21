@@ -6,45 +6,153 @@
         <meta name="format-detection" content="telephone=no">
         <title>PopupGuide</title>
         <link rel="stylesheet" href="css/guide.css">
-        <script src="../js/jquery-3.6.0.min.js"></script>
-        <script src="../js/ui.js"></script>
+        <style>
+            * {
+                    box-sizing: border-box;
+                    padding: 0;
+                    margin: 0;
+                }
+
+                .clearfix:after {
+                visibility: hidden;
+                display: block;
+                font-size: 0;
+                content: " ";
+                clear: both;
+                height: 0;
+                }
+
+                body {
+                    margin: 1rem;
+                    background-color: honeydew;
+                    font-family: Helvetica, Arial, sans-serif;
+                    color: #888;
+                }
+
+                .dotless {
+                    list-style: none;
+                }
+
+                .page-title {
+                    text-align: center;
+                    margin: 2rem;
+                }
+
+                .list > li {
+                    max-width: 800px;
+                    min-width: 300px;
+                    border: 1px solid #ccc;
+                    background-color: white;
+                    color: #888;
+                    overflow: hidden;
+                }
+
+                .list > li a {
+                    display: flex;
+                    height: 100%;
+                    font-size: 0.6rem;
+                    padding: 1rem;
+                    background-color: #000;
+                    color: white;
+                    /* transition: background-color 350ms ease-in-out; */
+                }
+
+                .list > li.active a {
+                    background-color: #ddd;
+                }
+
+                .list > li h1 {
+                    float: left;
+                    text-transform: uppercase;
+                    letter-spacing: 0.2em;
+                }
+                .list > li article {
+                    max-height: 0px;
+                    overflow: hidden;
+                    line-height: 1.6; 
+                    transition: max-height 350ms ease-in-out;
+                }
+
+                /* padding can't be on article element because it won't collapse properly, add wrapper around contents */
+                .list > li .article-inner {
+                    padding: 1rem;
+                }
+            </style>
+
     </head>
     <body>
-        <div class="guide-wrap">
-            <button type="button" class="pop">바텀시트</button>
-            <div class="bottom-sheet-wrap">
-                <div class="bottom-shee-cont"></div>
-            </div>
-            <a href="javascript:;" id="test" class="aaa bbb" data-test="1111" onclick="contain()">테스트</a>
-        </div>
+        <ul class="list">
+            <li>
+                <a href="javascript:;"><h1>Question 1</h1></a>
+                <article>
+                    <div class="article-inner">
+                        <ul class="dotless">
+                            <li>The</li>
+                            <li>Quick</li>
+                            <li>Brown</li>
+                            <li>Fox</li>
+                            <li>Lorem</li>
+                            <li>Ipsum</li>
+                        </ul>
+                    </div>
+                </article>
+            </li>
+            <li>
+                <a href="javascript:;"><h1>Question 2</h1></a>
+                <article>
+                    <div class="article-inner">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis expedita quia at delectus, quo necessitatibus iste vel deserunt velit magnam alias dicta similique. Eum doloribus voluptatum placeat magnam architecto laboriosam, eius mollitia pariatur tempore iure, earum labore dolore quis sequi ex ullam, facere modi perspiciatis fuga quaerat ipsam. Sit accusamus, iusto commodi, hic dolorum totam sed pariatur debitis in nam rerum. Minus impedit assumenda ipsam magni facere culpa optio quam saepe voluptate ducimus excepturi facilis dolore omnis quaerat, labore non, molestias amet nostrum cumque qui fuga nihil unde commodi. Unde ullam iusto magnam cumque repellendus architecto cupiditate vitae necessitatibus, amet aspernatur ipsum illo itaque fugiat commodi voluptatibus, aperiam molestiae laborum a quibusdam distinctio accusamus deleniti voluptates maxime eligendi. Molestiae, explicabo? Atque, at, iusto? Officia libero dignissimos quod minus sit soluta explicabo quae nesciunt tempora omnis, expedita dolorem maxime unde quia nam, sed quidem iure eius! Voluptates aliquam error, voluptas praesentium.</p>
+                    </div>
+                </article>
+            </li>
+        </ul>
         <script>
-            function contain(){
-                const _this = event.target;
-                const data = event.target.dataset.test;
-                const has = _this.classList.contains('ccc');
-                has ? _this.classList.add('add') : _this.classList.remove('aaa');
-                console.log(data);
+            var menu = document.querySelectorAll('.list li a');
+
+            for(var i = 0; i < menu.length; i++) {
+                menu[i].addEventListener('click', openCurrAccordion);
             }
-            // document.querySelector('.target').addEventListener("click", contain, false);
-           
-            // function contain(){
-            //     const cName = document.getElementById('test').classList;
-            //     console.log(cName)
-            //     // cName.contains('bbb');
-            //     // if( !event.target.classList == 'active' ){
-            //     //     event.target.classList.add('active')
-            //     // }else{
-            //     //     event.target.classList.remove('active');
-            //     // }
-            // }
-            $('.pop').on('click' , function(){
-                $('.bottom-sheet-wrap').fadeIn(1).addClass('active');
-            });
-            $('.bottom-sheet-wrap').click(function(e) { 
-                if(!$(e.target).hasClass("bottom-shee-cont") )  {
-                    $('.bottom-sheet-wrap').fadeOut(400).removeClass('active');
-                } 
-            });
-        </script>
+
+            function activeClass(e){
+                var parent = this.parentElement;
+                for(var i = 0; i < menu.length; i++) {
+                    var parent = menu[i].parentElement;
+
+                    this === menu[i] && !parent.classList.contains('active') ? parent.classList.add('active') : parent.classList.remove('active');
+                }
+            }
+
+            //Use this as the callback if you would like multiple dropdowns to be open
+            function openAccordion(e) {
+                var parent = this.parentElement;
+                var article = this.nextElementSibling;
+                
+                if (!parent.classList.contains('active')) {
+                    parent.classList.add('active');
+                    article.style.maxHeight = article.scrollHeight + 'px';
+                }
+                else {
+                    parent.classList.remove('active');
+                    article.style.maxHeight = '0px';
+                }
+            }
+
+            //Use this as the callback if you would like no more than one dropdown to be open
+            function openCurrAccordion(e) {
+                for(var i = 0; i < menu.length; i++) {
+                    var parent = menu[i].parentElement;
+                    var article = menu[i].nextElementSibling;
+
+                    if (this === menu[i] && !parent.classList.contains('active')) {
+                        parent.classList.add('active');
+                        article.style.maxHeight = article.scrollHeight + 'px';
+                    }
+                    else {
+                        parent.classList.remove('active');
+                        article.style.maxHeight = '0px';
+                    }
+                }
+            }
+          </script>
     </body>
 </html>
