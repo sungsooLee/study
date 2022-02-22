@@ -23,10 +23,34 @@
                 }
 
                 body {
-                    margin: 1rem;
                     background-color: honeydew;
                     font-family: Helvetica, Arial, sans-serif;
                     color: #888;
+                }
+
+                body , html{width:100%;padding:0 10px; }
+                .swiper {
+                    width: 100%;
+                }
+
+                .swiper-slide {
+                    text-align: center;
+                    font-size: 18px;
+                    background: #fff;
+
+                    /* Center slide text vertically */
+                    display: -webkit-box;
+                    display: -ms-flexbox;
+                    display: -webkit-flex;
+                    display: flex;
+                    -webkit-box-pack: center;
+                    -ms-flex-pack: center;
+                    -webkit-justify-content: center;
+                    justify-content: center;
+                    -webkit-box-align: center;
+                    -ms-flex-align: center;
+                    -webkit-align-items: center;
+                    align-items: center;
                 }
 
                 .dotless {
@@ -77,6 +101,63 @@
                 .list > li .article-inner {
                     padding: 1rem;
                 }
+
+                .list02 li {visibility: hidden;opacity: 0;}
+                .list02.on li {visibility: visible;opacity: 1;transition: all .3s ease-in-out; }
+                .list02.on li:nth-child(1) {transition-delay:.2s;}
+                .list02.on li:nth-child(2) {transition-delay:.3s;}
+                .list02.on li:nth-child(3) {transition-delay:.4s;}
+                .list02.on li:nth-child(4) {transition-delay:.5s;}
+
+                .list02.off li {visibility: hidden;opacity: 0;transition: all .3s ease-in-out; }
+                .list02.off li:nth-child(1) {transition-delay:.5s;}
+                .list02.off li:nth-child(2) {transition-delay:.4s;}
+                .list02.off li:nth-child(3) {transition-delay:.3s;}
+                .list02.off li:nth-child(4) {transition-delay:.2s;}
+
+
+
+                .toast {display: none; position: fixed; left:20px;bottom: 30px; width:calc(100% - 40px); height:30px; display: flex; align-items: center; justify-content: center; color:#fff; border-radius: 4px; opacity: 0; background:rgba(0,0,0,0.7); transition: opacity .5s ease-in-out;}
+                .toast.active {opacity:1;}
+
+                .swiper-wrapper {
+                    position: relative;
+                    width: 100%;
+                    z-index: 1;
+                    display: flex;
+                    transition-property: transform;
+                    box-sizing: content-box;
+                    }
+                    .swiper-android .swiper-slide,
+                    .swiper-wrapper {
+                    transform: translate3d(0px, 0, 0);
+                    }
+                    .swiper-pointer-events {
+                    touch-action: pan-y;
+                    }
+                    .swiper-pointer-events.swiper-vertical {
+                    touch-action: pan-x;
+                    }
+                    .swiper-slide {
+                    flex-shrink: 0;
+                    width: 100%;
+                    height: 100%;
+                    position: relative;
+                    transition-property: transform;
+                    }
+                    .swiper-pagination {
+                        position: absolute;
+                        text-align: center;
+                        transition: 300ms opacity;
+                        transform: translate3d(0, 0, 0);
+                        z-index: 10;
+                        }
+                        .swiper-pagination.swiper-pagination-hidden {
+                        opacity: 0;
+                        }
+                    .swiper{
+                        overflow: hidden;    
+                    }
             </style>
 
     </head>
@@ -106,12 +187,87 @@
                 </article>
             </li>
         </ul>
+        <br>
+        <br>
+        <button type="button" onclick="fadeEffect('toast')">클릭</button>
+        <p id="toast" class="toast">텍스트</p>
+
+        <a href="javascript:;" class="btn-test">클릭</a>11
+        <ul class="list02">
+            <li>111</li>
+            <li>222</li>
+            <li>333</li>
+            <li>444</li>
+        </ul>
+        <!-- Swiper -->
+        
+        <script src="../js/swiper-bundle.min.js"></script>
         <script>
+            var swiper = new Swiper( ".swiper" , {
+                pagination: {
+                    el: ".swiper .swiper-pagination",
+                },
+                noSwiping : true,
+                a11y:{
+                    prevSlideMessage: '이전 슬라이드',
+                    nextSlideMessage: '다음 슬라이드',
+                    slideLabelMessage:"총 {{slidesLength}}장의 슬라이드 중  {{index}} 번 슬라이드 입니다."
+                },
+                on: {
+                    init:function(){
+                        if( 2 > this.slides.length ) {
+                            document.querySelectorAll('.swiper .swiper-wrapper')[0].classList.add('swiper-no-swiping');
+                        }
+                    }
+                }
+
+            });
+            document.querySelector('.btn-test').addEventListener('click' , function(){
+                elm = document.querySelector('.list02');
+                if(elm.className === 'list02 on'){
+                    elm.className = 'list02 off';
+                } else {
+                    elm.className = 'list02 on';
+                }
+                
+            })
+            function fadeEffect(obj) {
+                var toast = document.getElementById(obj);
+                toast.style.display = 'flex';
+                setTimeout(function(){ toast.classList.add('active') }, 500);
+                setTimeout(function(){ toast.classList.remove('active') }, 10000);
+            };
+
+            function fadeOut(el) {
+                el.style.opacity = 1;
+                (function fade() {
+                    if ((el.style.opacity -= .1) < 0) {
+                        el.style.display = "none";
+                    } else {
+                        requestAnimationFrame(fade);
+                    }
+                })();
+            };
+
+            // ** FADE IN FUNCTION **
+            function fadeIn(el, display) {
+                el.style.opacity = 0;
+                el.style.display = display || "block";
+                (function fade() {
+                    var val = parseFloat(el.style.opacity);
+                    if (!((val += .1) > 1)) {
+                        el.style.opacity = val;
+                        requestAnimationFrame(fade);
+                    }
+                })();
+            };
             var menu = document.querySelectorAll('.list li a');
 
             for(var i = 0; i < menu.length; i++) {
                 menu[i].addEventListener('click', openCurrAccordion);
             }
+
+            // setTimeout(function(){ alert("Hello"); }, 3000);
 
             // 메뉴 리스트 활성화
             function activeClass(e){
@@ -154,6 +310,10 @@
                     }
                 }
             }
+
+
+
+            
           </script>
     </body>
 </html>
