@@ -4,50 +4,141 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover">
         <meta name="format-detection" content="telephone=no">
-        <title>PopupGuide</title>
+        <title>퍼블리싱 작업가이드</title>
         <link rel="stylesheet" href="css/guide.css">
-        <script src="../js/jquery-3.6.0.min.js"></script>
-        <script src="../js/ui.js"></script>
     </head>
     <body>
         <div class="guide-wrap">
-            <h1>신한 SOL 퍼블리싱 가이드</h1>
-            <ul class="guide-menu-list">
-                <li><a href="list-guide">가이드</a></li>
-                <li><a href="list-common">마이페이지, 검색, 고객센터, 회원가입, 로그인 </a></li>
-                <li><a href="list01">보안센터, 환경설정, 인증센터</a></li>
-                <li><a href="list02">공지사항/이벤트</a></li>
-                <li><a href="list03">생활금융플랫폼</a></li>
-            </ul>
-            <h2 class="sub-tit">서브타이틀: <span class=""></span></h2>
-            <div class="list-table-wrap">
-                <table class="guide-tbl">
-                    <colgroup>
-                        <col>
-                        <col style="width:15%">
-                        <col style="width:10%">
-                        <col style="width:10%">
-                        <col style="width:10%">
-                    </colgroup>
-                    <thead>
-                        <tr>
-                            <th scope="col">메뉴명</th>
-                            <th scope="col">화면ID</th>
-                            <th scope="col">상태</th>
-                            <th scope="col">작성일</th>
-                            <th scope="col">비고</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>메인</td>
-                            <td>IN01030101005</td>
-                            <td class="center">22.02.14</td>
-                            <td class="center">메인</td>
-                            <td class="center">이성수</td>
-                        </tr>
-                    </tbody>
-                </table>
+            <h1>신한 NEW APP 퍼블리싱 작업 가이드</h1>
+            <div class="guide-contents">
+                <h2>작업 환경</h2>
+                <div class="guide-tbl type-row">
+                    <table>
+                        <caption>환경</caption>
+                        <colgroup>
+                            <col style="width:20%;">
+                            <col style="width:80%;">
+                        </colgroup>
+                        <tbody>
+                            <tr>
+                                <th scope="row">작업 환경</th>
+                                <td>HTML5, CSS3, Javascript</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">인코딩</th>
+                                <td>UTF-8</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">웹 유형</th>
+                                <td>Mobile</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Mobile OS</th>
+                                <td>안드로이드:  / &nbsp;&nbsp;  IOS: </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">웹 접근성</th>
+                                <td>필수</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">해상도 기준</th>
+                                <td>360px</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <h2>작업 구조</h2>
+                <div class="guide-tbl type-col">
+                    <table>
+                        <caption>구조</caption>
+                        <colgroup>
+                            <col style="width:15%">
+                            <col style="width:15%">
+                            <col style="width:30%">
+                            <col style="width:40%">
+                        </colgroup>
+                        <thead>
+                            <tr>
+                                <th>분류 폴더</th>
+                                <th>서브 폴더</th>
+                                <th>파일 이름</th>
+                                <th>파일 설명</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>fonts</td>
+                                <td></td>
+                                <td></td>
+                                <td>신한 웹폰트</td>
+                            </tr>
+                            <tr>
+                                <td>css</td>
+                                <td></td>
+                                <td>style.css</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>scss</td>
+                                <td></td>
+                                <td>
+                                    _base.scss<br>
+                                    _layout.scss<br>
+                                </td>
+                                <td>컴포넌트 별 SCSS 관리</td>
+                            </tr>
+                            <tr>
+                                <td>js</td>
+                                <td>라이브러리</td>
+                                <td></td>
+                                <td>
+                                    스크립트 - 접근성 준수
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>images</td>
+                                <td>
+                                    common<br>
+                                    icon<br>
+                                    temp
+                                </td>
+                                <td></td>
+                                <td>
+                                    공통이미지<br>
+                                    서브이미지<br>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>html</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <h2>공통가이드 화면</h2>
+                <div class="guide-tbl type-col">
+                    <table>
+                        <caption>공통 화면 링크</caption>
+                        <colgroup>
+                            <col style="width:20%">
+                            <col style="width:80%">
+                        </colgroup>
+                        <thead>
+                            <tr>
+                                <th>공통 화면명</th>
+                                <th>화면 링크</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Layout</td>
+                                <td><a href=""></a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </body>
