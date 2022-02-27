@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover">
+        <meta name="format-detection" content="telephone=no">
+        <title>test</title>
+        <link rel="stylesheet" href="css/guide.css">
+        <style>
+            .tab-list {display: flex;justify-content: space-between;flex-wrap: wrap;}
+            .tab-list li {display: flex;align-items: center;justify-content: center; flex: auto;height:40px;}
+            .tab-list li a {color:#000;font-size: 14px;}
+            .tab-list li a.active {color:#f00;}
+            .tab-contents > div {display: none;}
+            .tab-contents > div.active {display: block;}
+        </style>
+    </head>
+    <body>
+        <script>
+          // let numbers = [1,2,3,4,5,6]
+          // numbers.forEach(test => console.log(test));
+
+          // let sum = 0;
+          // let numbers = [20, 11, 33, 10, 7, 77];
+          // numbers.forEach(addTotal);
+          // function addTotal(number){
+          //   sum += number;
+          // }
+          // console.log(sum);
+
+          // let sum = 0;
+          // let numbers = [20, 11, 33, 10, 7, 77];
+          // numbers.forEach(number => {
+          //   sum += number;
+          // });
+          // console.log(sum);
+
+          // let numbers = [20, 11, 33, 10, 7, 77];
+
+          // numbers.forEach((number , index, array) =>{
+          //   array[index] = number *2;
+          // });
+          // console.log(numbers);
+          window.addEventListener("load", function() {
+            const elMenus = document.querySelectorAll("header > ol > li");
+            elMenus.forEach(function(elMenu) {
+                elMenu.addEventListener("click", function() {
+                    let idx = Array.from(elMenus).indexOf(elMenu);
+                    let el = document.querySelector(`h2:nth-of-type(${idx + 1})`);
+                    el.scrollIntoView({
+                        block: "start", inline: "nearest", behavior: "smooth"
+                    });
+                });
+            });
+        });
+        </script>
+    </body>
+</html>
