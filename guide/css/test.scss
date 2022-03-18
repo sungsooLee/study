@@ -1,3 +1,14 @@
 h1 {
     font-size: 16px;
 }
+
+/* List Data */ 
+$fruits: (apple, orange, banana, mango); 
+
+.fruits { 
+    @each $fruit in $fruits { 
+        li.#{$fruit} { 
+            background: url("/images/#{$fruit}.png"); 
+        } 
+    } 
+}

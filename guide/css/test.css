@@ -1,4 +1,21 @@
 h1 {
   font-size: 16px;
 }
+
+/* List Data */
+.fruits li.apple {
+  background: url("/images/apple.png");
+}
+
+.fruits li.orange {
+  background: url("/images/orange.png");
+}
+
+.fruits li.banana {
+  background: url("/images/banana.png");
+}
+
+.fruits li.mango {
+  background: url("/images/mango.png");
+}
 /*# sourceMappingURL=test.css.map */
