@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover">
+        <meta name="format-detection" content="telephone=no">
+        <title>test</title>
+        <link rel="stylesheet" href="css/guide.css">
+        <link rel="stylesheet" href="css/test.css">
+    </head>
+    <body>
+        <div class="box-wrap" style="margin: 50px;">
+            <ul>
+                <li><input type="checkbox" name="aaa" id=""></li>
+                <li><input type="checkbox" name="aaa" id=""></li>
+                <li><input type="checkbox" name="aaa" id=""></li>
+                <li><input type="checkbox" name="aaa" id=""></li>
+                <li><input type="checkbox" name="aaa" id=""></li>
+                <li><input type="checkbox" name="aaa" id=""></li>
+                <li><input type="checkbox" name="aaa" id=""></li>
+                <li><input type="checkbox" name="aaa" id=""></li>
+                <li><input type="checkbox" name="aaa" id=""></li>
+                <li><input type="checkbox" name="aaa" id=""></li>
+                <li><input type="checkbox" name="aaa" id=""></li>
+            </ul>
+        </div>
+        <script>
+            const checkBoxes = document.querySelectorAll(".box-wrap input");
+            checkBoxes.forEach((item) => item.addEventListener("input", getCheckedCnt));
+            
+            function getCheckedCnt(e)  {
+                const { checked, id } = e.target;
+                this.parentNode.classList.toggle("checked");
+                this.parentNode.classList.contains("checked") ? this.parentNode.setAttribute( 'title', '선택됨' ) : this.parentNode.removeAttribute('title');
+               
+                // checkbox list 
+                const query = 'input[name="aaa"]:checked';
+                const selectedElements = document.querySelectorAll(query);
+                
+                // checked length
+                const selectedElementsCnt = selectedElements.length;
+                console.log(selectedElementsCnt);
+            }
+        </script>
+    </body>
+</html>
