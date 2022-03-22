@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover">
+        <meta name="format-detection" content="telephone=no">
+        <title>test</title>
+        <link rel="stylesheet" href="css/guide.css">
+        <link rel="stylesheet" href="css/test.css">
+    </head>
+    <body>
+        <div class="box-wrap" style="margin: 50px;">
+            <ul>
+                <li><input type="checkbox" name="aaa" id="" class="check-all"></li>
+                <li><input type="checkbox" name="aaa" id=""></li>
+                <li><input type="checkbox" name="aaa" id=""></li>
+                <li><input type="checkbox" name="aaa" id=""></li>
+                <li><input type="checkbox" name="aaa" id=""></li>
+                <li><input type="checkbox" name="aaa" id=""></li>
+                <li><input type="checkbox" name="aaa" id=""></li>
+                <li><input type="checkbox" name="aaa" id=""></li>
+                <li><input type="checkbox" name="aaa" id=""></li>
+                <li><input type="checkbox" name="aaa" id=""></li>
+                <li><input type="checkbox" name="aaa" id=""></li>
+            </ul>
+        </div>
+        <script>
+            const checkBoxes = document.querySelectorAll('.box-wrap input[type="checkbox"]');
+            const checkAll = document.querySelector('.box-wrap .check-all');
+
+            checkBoxes.forEach((checkbox) => checkbox.addEventListener("input", checkboxLimiter));
+            checkAll.addEventListener("click", (e) => {
+
+            });
+
+            // limit length
+            function checkboxLimiter(e) {
+                const markedBoxCount = document.querySelectorAll('input[type="checkbox"]:checked').length;
+                const unmarkedBoxCount = document.querySelectorAll('input[type="checkbox"]:not(:checked)');
+
+                this.parentNode.classList.toggle("checked");
+                this.parentNode.classList.contains("checked") ? this.parentNode.setAttribute( 'title', '체크됨' ) : this.parentNode.removeAttribute('title');
+
+                if (markedBoxCount == 3){
+                    unmarkedBoxCount.forEach(checkbox => {
+                        checkbox.disabled = true;
+                    })
+                } else if(markedBoxCount < 3){
+                    unmarkedBoxCount.forEach(checkbox => {
+                        checkbox.disabled = false;
+                    })
+                }
+            }
+
+            // // checked none length
+            // function disable() {
+            //     const unmarkedBoxCount = document.querySelectorAll('input[type="checkbox"]:not(:checked)');
+
+            //     unmarkedBoxCount.forEach(checkbox => {
+            //         checkbox.disabled = true
+            //     })
+            // }
+
+            // // checked none length
+            // function unDisable() {
+            //     const unmarkedBoxCount = document.querySelectorAll('input[type="checkbox"]:not(:checked)');
+
+            //     unmarkedBoxCount.forEach(checkbox => {
+            //         checkbox.disabled = false
+            //     })
+            // }
+        </script>
+    </body>
+</html>

@@ -11,7 +11,7 @@
     <body>
         <div class="box-wrap" style="margin: 50px;">
             <ul>
-                <li><input type="checkbox" name="aaa" id=""></li>
+                <li><input type="checkbox" name="aaa" id="" class="check-all"></li>
                 <li><input type="checkbox" name="aaa" id=""></li>
                 <li><input type="checkbox" name="aaa" id=""></li>
                 <li><input type="checkbox" name="aaa" id=""></li>
@@ -26,21 +26,57 @@
         </div>
         <script>
             const checkBoxes = document.querySelectorAll(".box-wrap input");
+            const checkAll = document.querySelector(".box-wrap .check-all");
+            const unmarkedBoxCount = document.querySelectorAll('.box-wrap input[type="checkbox"]:not(:checked)') ;
+            
+            const agreements = {
+                termsOfService: false,
+                privacyPolicy: false,
+                allowPromotions: false
+            };
+
             checkBoxes.forEach((item) => item.addEventListener("input", getCheckedCnt));
             
             function getCheckedCnt(e)  {
-                const { checked, id } = e.target;
+                const { checked, id, disabled } = e.target;
                 this.parentNode.classList.toggle("checked");
-                this.parentNode.classList.contains("checked") ? this.parentNode.setAttribute( 'title', '선택됨' ) : this.parentNode.removeAttribute('title');
+                this.parentNode.classList.contains("checked") ? this.parentNode.setAttribute( 'title', '체크됨' ) : this.parentNode.removeAttribute('title');
                
                 // checkbox list 
-                const query = 'input[name="aaa"]:checked';
-                const selectedElements = document.querySelectorAll(query);
+                const check = 'input[name="aaa"]:checked';
+                // const unCheck = 'input[name="aaa"]:not(:checked)';
+                const selectedElements = document.querySelectorAll(check);
+                // const unselectedElements = document.querySelectorAll(unCheck);
+                const selectedElementsCnt = selectedElements.length;
+
+                if ( selectedElementsCnt == 3 ) {
+                    unmarkedBoxCount.disabled = true;
+                    console.log('3개까지 체크 가능')
+                }
+
                 
                 // checked length
-                const selectedElementsCnt = selectedElements.length;
-                console.log(selectedElementsCnt);
+                // const selectedElementsCnt = selectedElements.length;
+                // const unSelectedElementsCnt = unSelectedElements.length;
+                // console.log(selectedElementsCnt , unSelectedElementsCnt)
             }
+            // checkAll.addEventListener("click", (e) => {
+            //     const { checked } = e.target;
+            //     if (checked) {
+            //         checkBoxes.forEach((item) => {
+            //             item.checked = false;
+            //             agreements[item.id] = false;
+            //             item.parentNode.classList.remove("active");
+            //         });
+            //     } else {
+            //         checkBoxes.forEach((item) => {
+            //         item.checked = true;
+            //         agreements[item.id] = true;
+            //         item.parentNode.classList.add("active");
+            //         });
+            //     }
+            //     // toggleSubmitButton();
+            // });
         </script>
     </body>
 </html>

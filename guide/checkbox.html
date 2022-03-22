@@ -47,7 +47,7 @@
             const { checked, id } = e.target;
             agreements[id] = checked;
             this.parentNode.classList.toggle("checked");
-            this.parentNode.classList.contains("checked") ? this.parentNode.setAttribute( 'title', '선택됨' ) : this.parentNode.removeAttribute('title');
+            this.parentNode.classList.contains("checked") ? this.parentNode.setAttribute( 'aria-hidden', 'false' ) : this.parentNode.setAttribute( 'aria-hidden', 'true' );
             // console.log(item);
         }
 
