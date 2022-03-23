@@ -27,13 +27,13 @@
         <script>
             const checkBoxes = document.querySelectorAll('.box-wrap input[type="checkbox"]');
             const checkAll = document.querySelector('.box-wrap .check-all');
-            const checkList = document.querySelector('.box-wrap input[type="checkbox"]:not(.check-all)');
+            const checkList = document.querySelectorAll('.box-wrap input[type="checkbox"]:not(:checked)'); 
 
             checkBoxes.forEach((checkbox) => checkbox.addEventListener("input", checkboxLimiter));
             checkAll.addEventListener("input", (e) => {
                 if(e.target.checked){
                     checkBoxes.forEach(checkbox => {
-                        checkbox.disabled = true;
+                        checkList.disabled = true;
                     })
                 }else {
                     checkBoxes.forEach(checkbox => {
