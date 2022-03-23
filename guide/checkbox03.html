@@ -12,25 +12,34 @@
         <div class="box-wrap" style="margin: 50px;">
             <ul>
                 <li><input type="checkbox" name="aaa" id="" class="check-all"></li>
-                <li><input type="checkbox" name="aaa" id=""></li>
-                <li><input type="checkbox" name="aaa" id=""></li>
-                <li><input type="checkbox" name="aaa" id=""></li>
-                <li><input type="checkbox" name="aaa" id=""></li>
-                <li><input type="checkbox" name="aaa" id=""></li>
-                <li><input type="checkbox" name="aaa" id=""></li>
-                <li><input type="checkbox" name="aaa" id=""></li>
-                <li><input type="checkbox" name="aaa" id=""></li>
-                <li><input type="checkbox" name="aaa" id=""></li>
-                <li><input type="checkbox" name="aaa" id=""></li>
+                <li><input type="checkbox" name="aaa" id="" class="check-list"></li>
+                <li><input type="checkbox" name="aaa" id="" class="check-list"></li>
+                <li><input type="checkbox" name="aaa" id="" class="check-list"></li>
+                <li><input type="checkbox" name="aaa" id="" class="check-list"></li>
+                <li><input type="checkbox" name="aaa" id="" class="check-list"></li>
+                <li><input type="checkbox" name="aaa" id="" class="check-list"></li>
+                <li><input type="checkbox" name="aaa" id="" class="check-list"></li>
+                <li><input type="checkbox" name="aaa" id="" class="check-list"></li>
+                <li><input type="checkbox" name="aaa" id="" class="check-list"></li>
+                <li><input type="checkbox" name="aaa" id="" class="check-list"></li>
             </ul>
         </div>
         <script>
             const checkBoxes = document.querySelectorAll('.box-wrap input[type="checkbox"]');
             const checkAll = document.querySelector('.box-wrap .check-all');
+            const checkList = document.querySelector('.box-wrap input[type="checkbox"]:not(.check-all)');
 
             checkBoxes.forEach((checkbox) => checkbox.addEventListener("input", checkboxLimiter));
-            checkAll.addEventListener("click", (e) => {
-
+            checkAll.addEventListener("input", (e) => {
+                if(e.target.checked){
+                    checkBoxes.forEach(checkbox => {
+                        checkbox.disabled = true;
+                    })
+                }else {
+                    checkBoxes.forEach(checkbox => {
+                        checkbox.disabled = false;
+                    })
+                }
             });
 
             // limit length
