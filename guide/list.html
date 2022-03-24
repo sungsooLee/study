@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover">
+        <meta name="format-detection" content="telephone=no">
+        <title>test</title>
+        <link rel="stylesheet" href="css/guide.css">
+        <link rel="stylesheet" href="css/test.css">
+        <style>
+            .test-list li.active a {color: blue;font-weight: bold;}
+        </style>
+    </head>
+    <body>
+        <div class="box-wrap" style="margin: 50px;">
+            <ul class="test-list">
+                <li><a href="javascript:;">1111</a></li>
+                <li><a href="javascript:;">2222</a></li>
+                <li><a href="javascript:;">3333</a></li>
+                <li><a href="javascript:;">4444</a></li>
+                <li><a href="javascript:;">5555</a></li>
+                <li><a href="javascript:;">6666</a></li>
+                <li><a href="javascript:;">7777</a></li>
+            </ul>
+        </div>
+        <script>
+            const btnList = document.querySelectorAll('.test-list li'); 
+            let btn = document.querySelectorAll('.test-list li a'); 
+
+            btn.forEach((item) => item.addEventListener("click", listActive));
+
+            function listActive(){
+                btnList.forEach(obj => {
+                    obj.classList.remove('active');
+                    obj.removeAttribute('title');
+                });
+                this.parentNode.classList.add('active');
+                this.parentNode.setAttribute('title' , '선택됨');
+            }
+        </script>
+    </body>
+</html>
