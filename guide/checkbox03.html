@@ -78,6 +78,40 @@
             //         checkbox.disabled = false
             //     })
             // }
+            // let checkBoxes = document.querySelectorAll('.multi-select-wrap li:not(:first-child) input[type="checkbox"]');
+        // let checkAll = document.querySelector('.multi-select-wrap .check-all');
+        // let isChecked = false;
+
+        // checkBoxes.forEach((checkbox) => checkbox.addEventListener("input", checkboxLimiter));
+        // checkAll.addEventListener("input", (e) => {
+        //     if(!isChecked){
+        //         checkBoxes.forEach(checkbox => {
+        //             checkbox.checked = false;
+        //             checkbox.disabled = true;
+        //         })
+        //     }else {
+        //         checkBoxes.forEach(checkbox => {
+        //             checkbox.disabled = false;
+        //         })
+        //     }
+        //     isChecked = !isChecked;
+        // });
+
+        // // limit length
+        // function checkboxLimiter(e) {
+        //     const markedBoxCount = document.querySelectorAll('.multi-select-wrap input[type="checkbox"]:checked').length;
+        //     const unmarkedBoxCount = document.querySelectorAll('.multi-select-wrap input[type="checkbox"]:not(:checked)');
+
+        //     if (markedBoxCount == 3){
+        //         unmarkedBoxCount.forEach(checkbox => {
+        //             checkbox.disabled = true;
+        //         })
+        //     } else if(markedBoxCount < 3){
+        //         unmarkedBoxCount.forEach(checkbox => {
+        //             checkbox.disabled = false;
+        //         })
+        //     }
+        // }
         </script>
     </body>
 </html>
