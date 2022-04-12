@@ -37,6 +37,20 @@
                     width: 100%;
                 }
                 }
+
+                .dropdown {
+                    max-height: 0;
+                    overflow: hidden;
+                    transition: max-height 1.2s ease-in-out;
+                }
+                .dropdown.open {
+                    overflow: auto;
+                    max-height: 400px;
+                    animation: hide-scroll 1.2s backwards;
+                }
+                @keyframes hide-scroll {
+                    from, to { overflow: hidden; } 
+                }
         </style>
     </head>
     <body>
@@ -83,6 +97,19 @@
         } else {
             applyAnimation.textContent = "Activate animation";
         }
+        });
+
+        const button = document.querySelector("#toggle-button");
+
+        const list = document.querySelector("#list");
+
+        button.addEventListener('click', ()=>{
+        const open = button.getAttribute('aria-expanded') === "true";
+        
+        button.setAttribute('aria-expanded', !open);
+        
+        //list.setAttribute('data-open', !open);
+        list.dataset.open = !open;
         });
     </script>
 </html>
