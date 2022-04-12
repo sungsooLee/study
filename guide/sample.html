@@ -92,11 +92,11 @@
         animationEventLog.textContent = '';
         iterationCount = 0;
         let active = animation.classList.contains('active');
-        if (active) {
-            applyAnimation.textContent = "Cancel animation";
-        } else {
-            applyAnimation.textContent = "Activate animation";
-        }
+            if (active) {
+                applyAnimation.textContent = "Cancel animation";
+            } else {
+                applyAnimation.textContent = "Activate animation";
+            }
         });
 
         const button = document.querySelector("#toggle-button");
@@ -104,12 +104,25 @@
         const list = document.querySelector("#list");
 
         button.addEventListener('click', ()=>{
-        const open = button.getAttribute('aria-expanded') === "true";
+            const open = button.getAttribute('aria-expanded') === "true";
         
-        button.setAttribute('aria-expanded', !open);
+            button.setAttribute('aria-expanded', !open);
         
-        //list.setAttribute('data-open', !open);
-        list.dataset.open = !open;
+            //list.setAttribute('data-open', !open);
+            list.dataset.open = !open;
         });
+
+        function myFunction() {
+            const elem = document.getElementById("circle");
+            console.log(elem.classList);
+            if(elem.classList[1] === undefined || elem.classList[1] === 'circle-scale-down') {
+                elem.classList.remove("circle-scale-down");
+                elem.classList.add("circle-scale-up");
+            } else {
+                elem.classList.remove("circle-scale-up");
+                elem.classList.add("circle-scale-down");
+            }
+        
+        }
     </script>
 </html>
