@@ -36,9 +36,9 @@
       </div>
       <script>
         let radioValue;
-
         const radios = Array.from(document.querySelectorAll('input[name="receiveOption"]'));
         const caseView = Array.from(document.querySelectorAll(".case-value-view"));
+
         radios.forEach(radio => {
           radio.addEventListener('input', function () {
             radioValue = radio.value;
@@ -48,6 +48,24 @@
             document.getElementById(radioValue).setAttribute("aria-hidden" , false);
           });
         });
+
+
+        function removeAttribute(elements, attributeName) {
+          elements.forEach(element => {
+            element.removeAttribute(attributeName);
+          });
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+          const elements = [
+            document.getElementById('one'),
+            document.getElementById('two'),
+            document.getElementById('three')
+          ];
+
+          removeAttribute(elements, 'class');
+        })
+
       </script>
     </body>
 </html>
