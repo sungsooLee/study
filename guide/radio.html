@@ -40,7 +40,7 @@
         const caseView = Array.from(document.querySelectorAll(".case-value-view"));
 
         radios.forEach(radio => {
-          radio.addEventListener('input', function () {
+          radio.addEventListener('change', function () {
             radioValue = radio.value;
             for(let i=0; i<caseView.length; i++) {
               caseView[i].setAttribute("aria-hidden" , true);
