@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover">
+        <meta name="format-detection" content="telephone=no">
+        <title>PopupGuide</title>
+        <link rel="stylesheet" href="css/guide.css">
+        <style>
+          [aria-hidden="false"] {
+              display:block;
+          }
+          [aria-hidden="true"] {
+              display:none;
+          }
+        </style>
+    </head>
+    <body>
+      <div class="subscribe">
+        <p>Would you like to subscribe?</p>
+        <label for="option01">전자메시지</label>
+        <input type="radio" name="receiveOption" id="option01" value="case01" />
+        <label for="option02">이메일</label>
+        <input type="radio" name="receiveOption" id="option02" value="case02" />
+        <label for="option03">다운로드</label>
+        <input type="radio" name="receiveOption" id="option03" value="case03" />
+      </div>
+      <div id="case01" class="case-value-view" aria-hidden="false">
+        전자메시지
+      </div>
+      <div id="case02" class="case-value-view" aria-hidden="true">
+        이메일
+      </div>
+      <div id="case03" class="case-value-view" aria-hidden="true">
+        다운로드
+      </div>
+      <script>
+        let radioValue;
+
+        const radios = Array.from(document.querySelectorAll('input[name="receiveOption"]'));
+        const caseView = Array.from(document.querySelectorAll(".case-value-view"));
+        radios.forEach(radio => {
+          radio.addEventListener('input', function () {
+            radioValue = radio.value;
+            for(let i=0; i<caseView.length; i++) {
+              caseView[i].setAttribute("aria-hidden" , true);
+            }
+            document.getElementById(radioValue).setAttribute("aria-hidden" , false);
+          });
+        });
+      </script>
+    </body>
+</html>
